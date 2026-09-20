@@ -1,0 +1,30 @@
+# ========== Java ==========
+target/
+*.jar
+*.war
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/
+.idea/
+*.iml
+
+# ========== Node ==========
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-error.log*
+
+# ========== IDE ==========
+.vscode/
+.DS_Store
+
+# ========== 环境变量和敏感信息 ==========
+.env
+.env.local
+*.env
+application-local.yml
+application-prod.yml
+
+# ========== 日志 ==========
+*.log
+logs/
