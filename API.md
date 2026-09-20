@@ -14,7 +14,7 @@
 
 所有接口返回统一结构：
 
-```json
+json
 {
   "code": 200,
   "message": "success",
