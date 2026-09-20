@@ -183,26 +183,4 @@ GitHub: @Bulut3900
 📄 License
 MIT License
 
-text
 
----
-
-## 操作方式
-
-1. 打开 `https://github.com/Bulut3900/ai-ticket-system`
-2. 点击 **"Add a README"** 绿色按钮（如果已经创建过 README，点编辑铅笔图标）
-3. **全选、删除**原有内容（如果有）
-4. **粘贴**上面这一整段
-5. 拉到页面底部，Commit message 填：`docs: 添加 README`
-6. 点 **Commit changes**
-
----
-
-## 粘贴后检查
-
-刷新仓库首页，应该能看到 README 的**渲染效果**，包括：
-- 标题
-- 技术栈列表
-- 架构图（代码块）
-- 项目结构树
-- API 表格
