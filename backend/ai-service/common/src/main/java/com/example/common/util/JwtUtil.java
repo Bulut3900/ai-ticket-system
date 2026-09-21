@@ -3,7 +3,7 @@ package com.example.common.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;   // ← 加这个 import
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
