@@ -44,34 +44,7 @@
 
 ## 🏗 系统架构
 
-┌─────────────────────────────────────────────┐
-│              浏览器                          │
-│       http://192.168.233.133                │
-└─────────────────────────────────────────────┘
-                    ↓
-┌─────────────────────────────────────────────┐
-│         Ubuntu 虚拟机（Docker）              │
-│                                              │
-│  ┌──────────┐                                │
-│  │ frontend │  ← Nginx（80）                 │
-│  └────┬─────┘                                │
-│       ↓ /api/**  /ai/**                      │
-│  ┌──────────┐                                │
-│  │ gateway  │  ← Spring Cloud Gateway（9000）│
-│  └────┬─────┘                                │
-│       ↓ Nacos 服务发现                        │
-│  ┌────┴──────┬──────────┬─────────┐         │
-│  ↓           ↓          ↓         ↓         │
-│ auth-service ticket-service ai-service      │
-│  (8082)      (8083)        (8081)           │
-│                  ↓ Feign                    │
-│                  └─────→ ai-service         │
-│                                              │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │  MySQL   │  │  Redis   │  │  Nacos   │   │
-│  │  (3306)  │  │  (6379)  │  │  (8848)  │   │
-│  └──────────┘  └──────────┘  └──────────┘   │
-└─────────────────────────────────────────────┘
+![alt text](image.png)
 
 ### 微服务拆分
 
@@ -164,61 +137,7 @@ MySQL 首次启动会自动执行 mysql-init/init.sql，建表并初始化 admin
 
 ## 📁 项目结构
 
-ai-ticket-system/
-├── backend/ai-service/                   # 后端微服务项目
-│   ├── common/                           # 公共模块
-│   │   └── src/main/java/com/example/common/
-│   │       ├── Result.java               # 统一返回
-│   │       ├── BusinessException.java    # 业务异常
-│   │       ├── GlobalExceptionHandler.java # 全局异常
-│   │       ├── config/WebConfig.java     # 拦截器配置
-│   │       ├── interceptor/JwtInterceptor.java # JWT 拦截器
-│   │       └── util/
-│   │           ├── JwtUtil.java          # JWT 工具
-│   │           └── UserContext.java      # 用户上下文
-│   ├── gateway/                          # 网关服务
-│   │   └── src/main/java/com/example/gateway/GatewayApplication.java
-│   ├── auth-service/                     # 认证服务
-│   │   └── src/main/java/com/example/auth/
-│   │       ├── AuthApplication.java
-│   │       ├── controller/UserController.java
-│   │       ├── service/UserService.java
-│   │       ├── mapper/UserMapper.java
-│   │       └── entity/User.java
-│   ├── ticket-service/                   # 工单服务
-│   │   └── src/main/java/com/example/ticket/
-│   │       ├── TicketApplication.java
-│   │       ├── controller/TicketController.java
-│   │       ├── service/TicketService.java
-│   │       ├── mapper/TicketMapper.java
-│   │       ├── entity/Ticket.java
-│   │       └── feign/AiServiceClient.java # Feign 客户端
-│   ├── ai-service/                       # AI 服务
-│   │   └── src/main/java/com/example/aiservice/
-│   │       ├── AiServiceApplication.java
-│   │       ├── controller/
-│   │       │   ├── ChatController.java   # AI 对话（流式）
-│   │       │   ├── KbController.java     # 知识库
-│   │       │   └── AiAnalyzeController.java # 内部 Feign 接口
-│   │       ├── service/KbService.java
-│   │       └── config/VectorStoreConfig.java
-│   ├── frontend/                         # 前端镜像构建
-│   │   ├── Dockerfile
-│   │   ├── nginx.conf
-│   │   └── dist/                         # 前端构建产物
-│   ├── mysql-init/                       # MySQL 初始化
-│   │   └── init.sql
-│   ├── pom.xml                           # 父 POM
-│   └── docker-compose.yml                # 8 容器编排
-├── frontend/ticket-frontend/             # 前端源码
-│   ├── src/
-│   │   ├── views/                        # 页面
-│   │   ├── router/                       # 路由
-│   │   └── utils/request.js              # Axios 封装
-│   └── package.json
-├── README.md                             # 项目文档
-├── API.md                                # 接口文档
-└── DEPLOY.md                             # 部署文档
+![alt text](image-3.png)
 
 ## 📚 API 文档
 

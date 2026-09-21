@@ -6,29 +6,7 @@
 
 项目使用 Docker Compose 编排 8 个容器，构成完整的微服务集群：
 
-┌─────────────────────────────────────────────┐
-│              宿主机（Ubuntu）                │
-│                                              │
-│  ┌──────────┐                                │
-│  │ frontend │  ← Nginx（80）                 │
-│  └────┬─────┘                                │
-│       ↓ /api/**  /ai/**                      │
-│  ┌──────────┐                                │
-│  │ gateway  │  ← Spring Cloud Gateway（9000）│
-│  └────┬─────┘                                │
-│       ↓ Nacos 服务发现                        │
-│  ┌────┴──────┬──────────┬─────────┐         │
-│  ↓           ↓          ↓         ↓         │
-│ auth-service ticket-service ai-service      │
-│  (8082)      (8083)        (8081)           │
-│                  ↓ Feign                    │
-│                  └─────→ ai-service         │
-│                                              │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │  MySQL   │  │  Redis   │  │  Nacos   │   │
-│  │  (3306)  │  │  (6379)  │  │  (8848)  │   │
-│  └──────────┘  └──────────┘  └──────────┘   │
-└─────────────────────────────────────────────┘
+![alt text](image-1.png)
 
 ### 8 个容器一览
 
@@ -333,25 +311,4 @@ docker compose logs --tail=50 ai-service | grep -i "ai"
 
 ## 附：目录结构
 
-backend/ai-service/
-├── common/                          # 公共模块
-├── gateway/                         # 网关服务
-│   ├── Dockerfile
-│   └── target/gateway-1.0.0-SNAPSHOT.jar
-├── auth-service/                    # 认证服务
-│   ├── Dockerfile
-│   └── target/auth-service-1.0.0-SNAPSHOT.jar
-├── ticket-service/                  # 工单服务
-│   ├── Dockerfile
-│   └── target/ticket-service-1.0.0-SNAPSHOT.jar
-├── ai-service/                      # AI 服务
-│   ├── Dockerfile
-│   └── target/ai-service-1.0.0-SNAPSHOT.jar
-├── frontend/                        # 前端镜像
-│   ├── Dockerfile
-│   ├── nginx.conf
-│   └── dist/
-├── mysql-init/                      # MySQL 初始化脚本
-│   └── init.sql
-├── pom.xml                          # 父 POM
-└── docker-compose.yml               # 8 容器编排
+![alt text](image-2.png)
