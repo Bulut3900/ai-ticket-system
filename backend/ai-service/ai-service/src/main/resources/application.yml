@@ -12,22 +12,20 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.233.133:8848    # ← 加这里
-
+        server-addr: ${NACOS_ADDR:192.168.233.133:8848}
+        fail-fast: false
   datasource:
-    url: jdbc:mysql://${SPRING_DATASOURCE_HOST:127.0.0.1}:3306/ticket_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:3306/ticket_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   data:
     redis:
-      host: ${SPRING_DATA_REDIS_HOST:127.0.0.1}
-      port: ${SPRING_DATA_REDIS_PORT:6379}
-
+      host: ${REDIS_HOST:127.0.0.1}
+      port: 6379
   ai:
     openai:
-      api-key: sk-ws-H.PIIEPIR.mHeL.MEQCIECvIpbOveKtoscbaMYD_Z13s0X894ERLdu-JgLCSEIlAiB_mSLiKZwE_QQbY6NhTYHWSXOTkGEJXRB7klRDeBjjwQ
+      api-key: ${SPRING_AI_OPENAI_API_KEY:sk-你的本地测试key}
       base-url: https://dashscope.aliyuncs.com/compatible-mode
       chat:
         options:

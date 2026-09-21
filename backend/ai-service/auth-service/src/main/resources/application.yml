@@ -12,9 +12,10 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.233.133:8848
+        server-addr: ${NACOS_ADDR:192.168.233.133:8848}
+        fail-fast: false
   datasource:
-    url: jdbc:mysql://${SPRING_DATASOURCE_HOST:127.0.0.1}:3306/ticket_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:3306/ticket_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
