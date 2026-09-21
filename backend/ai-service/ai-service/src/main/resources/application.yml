@@ -9,6 +9,10 @@ server:
 spring:
   application:
     name: ai-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.233.133:8848    # ← 加这里
 
   datasource:
     url: jdbc:mysql://${SPRING_DATASOURCE_HOST:127.0.0.1}:3306/ticket_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
@@ -23,7 +27,7 @@ spring:
 
   ai:
     openai:
-      api-key: ${SPRING_AI_OPENAI_API_KEY:sk-你的本地测试key}
+      api-key: sk-ws-H.PIIEPIR.mHeL.MEQCIECvIpbOveKtoscbaMYD_Z13s0X894ERLdu-JgLCSEIlAiB_mSLiKZwE_QQbY6NhTYHWSXOTkGEJXRB7klRDeBjjwQ
       base-url: https://dashscope.aliyuncs.com/compatible-mode
       chat:
         options:

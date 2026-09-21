@@ -1,0 +1,50 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.233.133:8848
+    gateway:
+      # 路由规则
+      routes:
+        # 用户模块 → auth-service
+        - id: auth-service
+          uri: lb://auth-service          # lb 表示从 Nacos 负载均衡
+          predicates:
+            - Path=/api/user/**
+
+        # 工单模块 → ticket-service
+        - id: ticket-service
+          uri: lb://ticket-service
+          predicates:
+            - Path=/api/ticket/**
+
+        # 知识库 → ai-service
+        - id: ai-service-kb
+          uri: lb://ai-service
+          predicates:
+            - Path=/api/kb/**
+
+        # AI 对话 → ai-service
+        - id: ai-service-ai
+          uri: lb://ai-service
+          predicates:
+            - Path=/ai/**
+      # 跨域配置
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
