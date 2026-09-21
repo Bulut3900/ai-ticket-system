@@ -1,4 +1,4 @@
-package com.example.auth.interceptor;
+package com.example.common.interceptor;
 
 import com.example.common.BusinessException;                     // ← common
 import com.example.common.util.JwtUtil;                          // ← common

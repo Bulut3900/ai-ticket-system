@@ -1,6 +1,6 @@
-package com.example.auth.config;
+package com.example.common.config;
 
-import com.example.auth.interceptor.JwtInterceptor;
+import com.example.common.interceptor.JwtInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
