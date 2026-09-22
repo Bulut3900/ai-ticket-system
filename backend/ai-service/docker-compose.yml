@@ -98,7 +98,7 @@ services:
       NACOS_ADDR: nacos:8848
       MYSQL_HOST: mysql
       REDIS_HOST: redis
-      SPRING_AI_OPENAI_API_KEY: sk-ws-H.PIIEPIR.mHeL.MEQCIECvIpbOveKtoscbaMYD_Z13s0X894ERLdu-JgLCSEIlAiB_mSLiKZwE_QQbY6NhTYHWSXOTkGEJXRB7klRDeBjjwQ
+      SPRING_AI_OPENAI_API_KEY:  你的ai api key
     networks:
       - ai-network
 
